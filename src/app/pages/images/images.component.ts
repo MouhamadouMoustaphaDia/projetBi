@@ -33,24 +33,30 @@ export class ImagesComponent implements OnInit {
   constructor(private http: HttpClient,private imageService : AuthService) { }
 
   ngOnInit() {
-    // this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Products', active: true }];
-    // this.products = Object.assign([], productList);
+    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Products', active: true }];
+    this.products = Object.assign([], productList);
+    console.log(this.products);
+    this.http.get<any>(`http://localhost:8000/api/products`)
+      .subscribe((response) => {
+        this.products = response.data;
 
-    // this.http.get<any>(`http://localhost:8000/api/products`)
-    //   .subscribe((response) => {
-    //     this.products = response.data;
-    //   });
+      });
 
     this.imageService.getImages().subscribe((response:any) => {
-      console.log(response);
-        this.allImages = response.data;
+      this.allImages = response.body;
+      console.log(this.allImages);
+
       });
   }
 
   searchFilter(e) {
+    // const searchStr = e.target.value;
+    // this.products = productList.filter((product) => {
+    //   return product.name.toLowerCase().search(searchStr.toLowerCase()) !== -1;
+    // });
     const searchStr = e.target.value;
-    this.products = productList.filter((product) => {
-      return product.name.toLowerCase().search(searchStr.toLowerCase()) !== -1;
+    this.allImages = this.allImages.filter((image) => {
+        return image.name.toLowerCase().search(searchStr.toLowerCase()) !== -1;
     });
   }
 

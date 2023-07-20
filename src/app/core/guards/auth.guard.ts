@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
+
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
@@ -15,19 +16,25 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (environment.defaultauth === 'firebase') {
-            const currentUser = this.authenticationService.currentUser();
-            if (currentUser) {
-                // logged in so return true
-                return true;
-            }
-        } else {
-            const currentUser = this.authFackservice.currentUserValue;
-            if (currentUser) {
-                // logged in so return true
-                return true;
-            }
-        }
+      let token = localStorage.getItem('auth_app_token');
+      if(token){
+        return true;
+      }
+
+        // if (environment.defaultauth === 'firebase') {
+        //     const currentUser = this.authenticationService.currentUser();
+        //     if (currentUser) {
+        //         // logged in so return true
+        //         return true;
+        //     }
+        // } else {
+        //     const currentUser = this.authFackservice.currentUserValue;
+        //     if (currentUser) {
+        //         // logged in so return true
+        //         return true;
+        //     }
+        // }
+
         // not logged in so redirect to login page with the return url
         this.router.navigate(['/account/login'], { queryParams: { returnUrl: state.url } });
         return false;

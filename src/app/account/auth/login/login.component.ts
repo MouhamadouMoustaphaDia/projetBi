@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     // this.authenticationService.logout();
     // get return url from route parameters or default to '/'
     // tslint:disable-next-line: no-string-literal
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
+   // this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
   }
 
   // convenience getter for easy access to form fields
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
    * Form submit
    */
   onSubmit() {
-    this.router.navigate(['/image']);
+    //this.router.navigate(['/image']);
     this.submitted = true;
 
     // stop here if form is invalid
@@ -69,13 +69,13 @@ export class LoginComponent implements OnInit {
       return;
     } else {
 
-      this.user.email = this.f.email.value;
+      this.user.email = "Moustapha";
       this.user.password = this.f.password.value;
       console.log(this.user);
         this.userService.login(this.user).subscribe((response:any) => {
           console.log(response);
           this.saveToken(response['token']);
-          this.router.navigate(['/account/login']);
+          this.router.navigate(['/image']);
           // if (response.status == 200) {
           //   console.log("this.user");
           //   this.router.navigate(['/account/login']);
@@ -88,5 +88,6 @@ export class LoginComponent implements OnInit {
 
   saveToken(token: string) {
     localStorage.setItem('auth_app_token', token);
+   // console.log(token);
   }
 }

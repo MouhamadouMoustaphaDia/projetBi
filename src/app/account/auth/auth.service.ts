@@ -16,20 +16,40 @@ export class AuthService {
   redirectUrl: string;  constructor(private myRoute: Router , private http: HttpClient, public router: Router) { }
 
   //authenticate(username, password)
+  // login(value: UserModel) {
+  //   //mode: no-cors
+  //   return this.http.post(
+  //     this.url + '/api/login?username='+value.email+'&password='+value.password,
+  //     { observe : 'response'},
+  //     { headers: {
+  //        'Content-Type': 'application/json',
+  //         'Access-Control-Allow-Origin': '*',
+  //         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+  //         "Accept": "application/json"
+  //       }}
+  //     );
+  //   }
+
   login(value: UserModel) {
-    //mode: no-cors
+    let rawdata = {
+      email: value.email,
+      password: value.password
+    };
+
     return this.http.post(
-      this.url + '/api/login?username='+value.email+'&password='+value.password,
-      { observe : 'response'},
-      { headers: {
-         'Content-Type': 'application/json',
+      this.url + '/api/login',
+      rawdata,
+      {
+        headers: {
+          'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-          "Accept": "application/json"
-        }}
-      );
-    }
-
+          'Accept': 'application/json'
+        },
+        observe: 'response'
+      }
+    );
+  }
   //createUser(value: UserModel)
   register(value: UserRegistrer) {
     let rawdata = {
@@ -78,7 +98,7 @@ export class AuthService {
 
   //apiget all images
   getImages() {
-    return this.http.get(this.url + '/api/getImages',{ observe : 'response'});
+    return this.http.get(this.url + '/api/images',{ observe : 'response'});
   }
 
   //api add image

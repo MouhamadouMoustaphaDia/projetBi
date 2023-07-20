@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { Register2Component } from './register2/register2.component';
 import { Recoverpwd2Component } from './recoverpwd2/recoverpwd2.component';
+import { ImagesComponent } from 'src/app/pages/images/images.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,7 @@ const routes: Routes = [
         path: 'signup',
         component: SignupComponent
     },
+
     {
         path: 'signup-2',
         component: Register2Component
