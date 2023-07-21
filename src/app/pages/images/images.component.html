@@ -27,7 +27,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-sm-6" *ngFor="let image of allImages">
+
+            <div class="col-xl-4 col-sm-6" *ngFor="let image of allImages">
                 <div class="card card-card">
                     <div class="card-body">
                         <div class="product-img position-relative"    [style.background]="'url(' + image.image + ')'">
@@ -57,11 +58,12 @@
 
             <!-- end row -->
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1" [collectionSize]="6" page="1" [maxSize]="1" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+        <div class="row ">
+            <div class="col-lg-12 ">
+                <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1 " [collectionSize]="6 " page="1 " [maxSize]="1 " [rotate]="true " [ellipses]="false " [boundaryLinks]="true "></ngb-pagination>
             </div>
         </div>
     </div>
     <!-- end row -->
 </div>
+
