@@ -4,6 +4,7 @@ import {Options} from "ng5-slider";
 import {HttpClient} from "@angular/common/http";
 import { AuthService } from 'src/app/account/auth/auth.service';
 import { ImageModel } from 'src/app/core/models/auth.models';
+import { BoundDirectivePropertyAst } from '@angular/compiler';
 
 @Component({
   selector: 'app-images',
@@ -30,21 +31,25 @@ export class ImagesComponent implements OnInit {
   public products: productModel[] = [];
   public productTemp: productModel[] = [];
   public allImages: ImageModel[] = [];
+  public originalAllImages: ImageModel[] = [];
+
   constructor(private http: HttpClient,private imageService : AuthService) { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Products', active: true }];
-    this.products = Object.assign([], productList);
-    console.log(this.products);
-    this.http.get<any>(`http://localhost:8000/api/products`)
-      .subscribe((response) => {
-        this.products = response.data;
+    // this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Products', active: true }];
+    // this.products = Object.assign([], productList);
+    // //console.log(this.products);
+    // this.http.get<any>(`http://localhost:8000/api/products`)
+    //   .subscribe((response) => {
+    //     this.products = response.data;
 
-      });
+    //   });
 
     this.imageService.getImages().subscribe((response:any) => {
       this.allImages = response.body;
+      this.originalAllImages = response.body;
       console.log(this.allImages);
+
 
       });
   }
@@ -54,10 +59,17 @@ export class ImagesComponent implements OnInit {
     // this.products = productList.filter((product) => {
     //   return product.name.toLowerCase().search(searchStr.toLowerCase()) !== -1;
     // });
-    const searchStr = e.target.value;
-    this.allImages = this.allImages.filter((image) => {
-        return image.name.toLowerCase().search(searchStr.toLowerCase()) !== -1;
-    });
+    const searchStr = e.target.value.toLowerCase();
+
+    if (searchStr === '') {
+      // Si la barre de recherche est vide, réinitialisez les images avec la copie non filtrée
+      this.allImages = this.originalAllImages;
+    } else {
+      // Sinon, appliquez le filtre de recherche sur la copie non filtrée
+      this.allImages = this.originalAllImages.filter((image) => {
+        return image.name.toLowerCase().search(searchStr) !== -1;
+      });
+    }
   }
 
   discountLessFilter(e, percentage) {
