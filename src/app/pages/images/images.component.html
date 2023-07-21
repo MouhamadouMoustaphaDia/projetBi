@@ -28,17 +28,17 @@
         </div>
         <div class="row">
             <div class="col-xl-3 col-sm-6" *ngFor="let image of allImages">
-                <div class="card">
+                <div class="card card-card">
                     <div class="card-body">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative"    [style.background]="'url(' + image.image + ')'">
 
-                            <!-- Lien pour télécharger l'image  assets/images/product/img-9.jpg -->
-                            <a href="{{ image.image }}" download>
-                                <img src="{{image.image}}" alt="" class="img-fluid mx-auto d-block">
-                            </a>
+                          <a href="{{ image.image }}" download class="card-download">
+                            <span class=" link"><i class="bx bx-cloud-download "></i></span>
+                          </a>
+
                         </div>
-                        <div class="mt-4 text-center">
-                            <h5 class="mb-3 text-truncate">
+                        <div class="text-center">
+                            <h5 class="mb-3 mt-2 text-truncate">
                                 <a href="javascript: void(0);" class="text-dark">{{ image.name }}</a>
                             </h5>
                             <!-- <p class="text-muted">
@@ -49,9 +49,7 @@
                                 <i class="bx bx-star text-warning"></i>
                             </p> -->
                             <!-- Bouton de téléchargement -->
-                            <a href="{{ image.image }}" download>
-                                <button class="btn btn-primary">Télécharger</button>
-                            </a>
+
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,28 @@
+.card-card{
+  .card-body{
+    padding: 0 !important;
+  }
+  .product-img{
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .card-download{
+      background-color: rgba(255, 255, 255, 0.69) !important;
+      border-color: rgba(255, 255, 255, 0.69) !important;
+      padding: 0.5rem 1rem !important;
+
+    }
+    .card-download:hover{
+      background-color: rgb(255, 255, 255) !important;
+    }
+  }
+}
+
