@@ -4,7 +4,8 @@ import {Options} from "ng5-slider";
 import {HttpClient} from "@angular/common/http";
 import { AuthService } from 'src/app/account/auth/auth.service';
 import { ImageModel } from 'src/app/core/models/auth.models';
-import { BoundDirectivePropertyAst } from '@angular/compiler';
+import { MicroServiceService } from 'src/app/micro-service.service';
+// { BoundDirectivePropertyAst } from '@angular/compiler';
 
 @Component({
   selector: 'app-images',
@@ -12,6 +13,7 @@ import { BoundDirectivePropertyAst } from '@angular/compiler';
   styleUrls: ['./images.component.scss']
 })
 export class ImagesComponent implements OnInit {
+	private microService = new  MicroServiceService
 
 
   breadCrumbItems: Array<{}>;
@@ -26,6 +28,10 @@ export class ImagesComponent implements OnInit {
       return '$' + value;
     },
   };
+
+	toggleMic(): void {
+		this.microService.toggleMic().then(r => console.log(r));
+	}
   log = '';
   discountRates: number[] = [];
   public products: productModel[] = [];
@@ -52,6 +58,7 @@ export class ImagesComponent implements OnInit {
 
 
       });
+
   }
 
   searchFilter(e) {

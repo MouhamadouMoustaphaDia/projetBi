@@ -1,70 +1,70 @@
 <div class="container-fluid">
 
-  <div class="col-lg-12">
-    <div class="row mb-3">
-      <div class="col-xl-4 col-sm-6">
-        <div class="mt-2">
-          <h5>Images</h5>
-        </div>
-      </div>
-      <div class="col-lg-8 col-sm-6">
-        <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
-          <div class="search-box me-2">
-            <div class="position-relative">
-              <input type="text" class="form-control border-0" placeholder="Search..." (input)="searchFilter($event)">
-              <i class="bx bx-search-alt search-icon"></i>
-            </div>
-          </div>
-          <ul class="nav nav-pills product-view-nav">
-            <li class="nav-item">
-              <div class="content-center">
-                <div class="pulse">
-                  <i class="bx bx-microphone "></i>
-                </div>
-              </div>
-            </li>
+	<div class="col-lg-12">
+		<div class="row mb-3">
+			<div class="col-xl-4 col-sm-6">
+				<div class="mt-2">
+					<h5>Images</h5>
+				</div>
+			</div>
+			<div class="col-lg-8 col-sm-6">
+				<form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
+					<div class="search-box me-2">
+						<div class="position-relative">
+							<input type="text" class="form-control border-0" placeholder="Search..." (input)="searchFilter($event)">
+							<i class="bx bx-search-alt search-icon"></i>
+						</div>
+					</div>
+					<ul class="nav nav-pills product-view-nav">
+						<li class="nav-item">
+							<div class="content-mic">
+								<div class="mic" (click)="toggleMic()" >
+									<i class="fas fa-microphone"></i>
+								</div>
+								<div id="level">Level: <span></span></div>
+							</div>
+						</li>
 
 
+					</ul>
+				</form>
+			</div>
+		</div>
+		<div class="row">
 
-          </ul>
-        </form>
-      </div>
-    </div>
-    <div class="row">
+			<div class="col-xl-4 col-sm-6" *ngFor="let image of allImages">
+				<div class="card card-card">
+					<div class="card-body">
+						<div class="product-img position-relative" [style.background]="'url(' + image.image + ')'">
 
-      <div class="col-xl-4 col-sm-6" *ngFor="let image of allImages">
-        <div class="card card-card">
-          <div class="card-body">
-            <div class="product-img position-relative" [style.background]="'url(' + image.image + ')'">
+							<a href="{{ image.image }}" download class="card-download">
+								<span class=" link"><i class="bx bx-cloud-download "></i></span>
+							</a>
 
-              <a href="{{ image.image }}" download class="card-download">
-                <span class=" link"><i class="bx bx-cloud-download "></i></span>
-              </a>
-
-            </div>
-            <div class="text-center">
-              <h5 class="mb-3 mt-2 text-truncate">
-                <a href="javascript: void(0);" class="text-dark">{{ image.name }}</a>
-              </h5>
-              <p class="text-muted">
+						</div>
+						<div class="text-center">
+							<h5 class="mb-3 mt-2 text-truncate">
+								<a href="javascript: void(0);" class="text-dark">{{ image.name }}</a>
+							</h5>
+							<p class="text-muted">
                                 <span *ngFor="let tag of image.tags" class="badge bg-info ">
                                   {{ tag.name }}
                                 </span>
-              </p>
+							</p>
 
-            </div>
-          </div>
-        </div>
-      </div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <!-- end row -->
-    </div>
-    <div class="row ">
-      <div class="col-lg-12 ">
-        <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1 " [collectionSize]="6 " page="1 " [maxSize]="1 " [rotate]="true " [ellipses]="false " [boundaryLinks]="true "></ngb-pagination>
-      </div>
-    </div>
-  </div>
-  <!-- end row -->
+			<!-- end row -->
+		</div>
+		<div class="row ">
+			<div class="col-lg-12 ">
+				<ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1 " [collectionSize]="6 " page="1 " [maxSize]="1 " [rotate]="true " [ellipses]="false " [boundaryLinks]="true "></ngb-pagination>
+			</div>
+		</div>
+	</div>
+	<!-- end row -->
 </div>
 
