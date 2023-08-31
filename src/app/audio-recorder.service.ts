@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {saveAs} from 'file-saver';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from "./account/auth/auth.service";
-import {join} from "path";
+const path = require('path');
 
 
 @Injectable({
@@ -61,7 +61,7 @@ export class AudioRecorderService {
 		const audioBlob = new Blob(this.recordedChunks, {type: 'audio/wav'});
 		const fileName = 'recording.wav';
 
-		const filePath = join(__dirname, "audio", fileName);
+		const filePath = path.join(__dirname, "audio", fileName);
 		//save audio file in filePath
 		saveAs(audioBlob, filePath);
 
